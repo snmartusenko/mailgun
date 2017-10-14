@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCampaignsTable extends Migration
+class CreateSubscriberBunchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,11 @@ class CreateCampaignsTable extends Migration
      */
     public function up()
     {
-        Schema::create('campaigns', function (Blueprint $table) {
+        Schema::create('subscriber_bunches', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 200)->unique()->min(5);
-            $table->string('description', 255)->nullable();
 
-            $table->integer('template_id')->unsigned();
+            $table->integer('subscriber_id')->unsigned();
             $table->integer('bunch_id')->unsigned();
-
-            $table->integer('user_id')->unsigned();
-
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -35,6 +28,6 @@ class CreateCampaignsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campaigns');
+        Schema::dropIfExists('subscriber_bunches');
     }
 }

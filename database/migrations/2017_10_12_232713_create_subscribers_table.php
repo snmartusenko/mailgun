@@ -15,6 +15,12 @@ class CreateSubscribersTable extends Migration
     {
         Schema::create('subscribers', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('firstname', 255);
+            $table->string('lastname', 255)->nullable();
+            $table->string('email', 255)->unique();
+
+            $table->integer('user_id')->unsigned();
+
             $table->timestamps();
             $table->softDeletes();
         });
