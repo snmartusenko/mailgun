@@ -11,12 +11,18 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 //Route::get('/', function () {
 //    return view('welcome');
 //});
 
 Route::get('/', 'TemplateController@index')->name('template');
-Route::resource('template', 'templateController');
+
+Route::resource('campaign', 'CampaignController');
+Route::resource('template', 'TemplateController');
+Route::resource('bunch', 'BunchController');
 
 Auth::routes();
 

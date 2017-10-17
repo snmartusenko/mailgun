@@ -41,6 +41,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+
+                        <li><a href="{{ route('campaign.index') }}">Campaigns</a></li>
+                        <li><a href="{{ route('template.index') }}">Templates</a></li>
+                        <li><a href="{{ route('bunch.index') }}">Bunches</a></li>
+
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
