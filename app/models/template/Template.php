@@ -9,5 +9,6 @@ class Template extends Model
 {
     use SoftDeletes;
 
-    //
+    protected $fillable = ['name', 'content'];
+
 }
