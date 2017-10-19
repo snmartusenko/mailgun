@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\models\bunch\Bunch;
 use Illuminate\Http\Request;
+use App\Http\Requests\BunchRequest;
 
 class BunchController extends Controller
 {
@@ -14,11 +16,13 @@ class BunchController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  Bunch $bunch
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Bunch $bunch)
     {
-        //
+        $bunches = $bunch->orderBy('id', 'ask')->get();
+        return view('bunch.index', compact('bunches'));
     }
 
     /**
@@ -28,62 +32,66 @@ class BunchController extends Controller
      */
     public function create()
     {
-        //
+        return view ('bunch.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Bunch $bunch
+     * @param  BunchRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Bunch $bunch, BunchRequest $request)
     {
-        //
+        $bunch->create($request->all());
+        return redirect()->route('bunch.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Bunch $bunch
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Bunch $bunch)
     {
-        //
+        return view('bunch.show', compact('bunch'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Bunch $bunch
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Bunch $bunch)
     {
-        //
+        return view('bunch.edit', compact('bunch'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  BunchRequest $request
+     * @param  Bunch $bunch
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BunchRequest $request, Bunch $bunch)
     {
-        //
+        $bunch->update($request->all());
+        return redirect()->route('bunch.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Bunch $bunch
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Bunch $bunch)
     {
-        //
+        $bunch->delete();
+        return redirect()->route('bunch.index');
     }
 }

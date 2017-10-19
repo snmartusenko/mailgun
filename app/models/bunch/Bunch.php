@@ -9,5 +9,5 @@ class Bunch extends Model
 {
     use SoftDeletes;
 
-    //
+    protected $fillable = ['name', 'description'];
 }
