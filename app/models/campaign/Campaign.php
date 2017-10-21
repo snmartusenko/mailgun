@@ -9,5 +9,5 @@ class Campaign extends Model
 {
     use SoftDeletes;
 
-    //
+    protected $fillable = ['name', 'description'];
 }

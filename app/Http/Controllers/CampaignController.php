@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\models\campaign\Campaign;
 use Illuminate\Http\Request;
+use App\Http\Requests\CampaignRequest;
 
 class CampaignController extends Controller
 {
@@ -14,11 +16,13 @@ class CampaignController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  Campaign $campaign
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Campaign $campaign)
     {
-        //
+        $campaigns = $campaign->orderBy('id', 'ask')->get();
+        return view('campaign.index', compact('campaigns'));
     }
 
     /**
@@ -28,62 +32,66 @@ class CampaignController extends Controller
      */
     public function create()
     {
-        //
+        return view ('campaign.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Campaign $campaign
+     * @param  CampaignRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Campaign $campaign, CampaignRequest $request)
     {
-        //
+        $campaign->create($request->all());
+        return redirect()->route('campaign.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Campaign $campaign
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Campaign $campaign)
     {
-        //
+        return view('campaign.show', compact('campaign'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Campaign $campaign
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Campaign $campaign)
     {
-        //
+        return view('campaign.edit', compact('campaign'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  CampaignRequest $request
+     * @param  Campaign $campaign
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CampaignRequest $request, Campaign $campaign)
     {
-        //
+        $campaign->update($request->all());
+        return redirect()->route('campaign.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Campaign $campaign
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Campaign $campaign)
     {
-        //
+        $campaign->delete();
+        return redirect()->route('campaign.index');
     }
 }
