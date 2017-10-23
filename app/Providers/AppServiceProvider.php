@@ -4,10 +4,14 @@ namespace App\Providers;
 
 use App\models\template\Template;
 use App\models\bunch\Bunch;
+use App\models\subscriber\Subscriber;
 use App\models\campaign\Campaign;
+
 use App\Observers\TemplateObserver;
 use App\Observers\BunchObserver;
+use App\Observers\SubscriberObserver;
 use App\Observers\CampaignObserver;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -24,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Template::observe(TemplateObserver::class);
         Bunch::observe(BunchObserver::class);
         Campaign::observe(CampaignObserver::class);
+        Subscriber::observe(SubscriberObserver::class);
     }
 
     /**

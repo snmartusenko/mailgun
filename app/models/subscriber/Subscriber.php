@@ -9,5 +9,5 @@ class Subscriber extends Model
 {
     use SoftDeletes;
 
-    //
+    protected $fillable = ['firstname', 'lastname', 'email'];
 }

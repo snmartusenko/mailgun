@@ -23,6 +23,7 @@ Route::get('/', 'TemplateController@index')->name('template');
 Route::resource('campaign', 'CampaignController');
 Route::resource('template', 'TemplateController');
 Route::resource('bunch', 'BunchController');
+Route::resource('bunch.subscriber', 'SubscriberController');
 
 Auth::routes();
 
