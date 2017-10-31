@@ -1,3 +1,9 @@
+<?php
+use App\models\template\Template;
+use App\models\bunch\Bunch;
+
+?>
+
 @extends('layouts.app')
 
 @section('content')
@@ -14,8 +20,10 @@
                         <table class="table table-bordered table-responsive table-striped">
                             <tr>
                                 {{--<th width="5%">id</th>--}}
-                                <th width="20%">Name</th>
-                                <th width="60%">Description</th>
+                                <th width="15%">Name</th>
+                                <th width="40%">Description</th>
+                                <th width="15%">Template</th>
+                                <th width="15%">Bunch</th>
                                 <th width="15%">Action</th>
                             </tr>
                             <tr>
@@ -35,6 +43,8 @@
 {{--                                    <td>{{$model->id}}</td>--}}
                                     <td>{{$model->name}}</td>
                                     <td>{{$model->description}}</td>
+                                    <td>{{Template::find($model->template_id)->name}}</td>
+                                    <td>{{Bunch::find($model->bunch_id)->name}}</td>
                                     <td>
                                         {{Form::open(['class' => 'confirm-delete', 'route' => ['campaign.destroy', $model->id], 'method' => 'DELETE'])}}
                                         {{ link_to_route('campaign.show', 'info', [$model->id], ['class' => 'btn btn-info btn-xs']) }}

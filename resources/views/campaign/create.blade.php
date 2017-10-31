@@ -1,6 +1,9 @@
 @extends('layouts.panel')
 
-<?php  /** @var \Illuminate\Support\ViewErrorBag $errors */  ?>
+<?php
+/** @var \Illuminate\Support\ViewErrorBag $errors */
+
+?>
 
 @section('panel')
     <div class="panel-heading container-fluid">
