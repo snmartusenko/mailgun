@@ -23,7 +23,7 @@ class SubscriberController extends Controller
      */
     public function index(Bunch $bunch, Subscriber $subscriber)
     {
-        $subscribers = $subscriber->orderBy('id', 'ask')->get();
+        $subscribers = $bunch->subscribers()->orderBy('id', 'ask')->get();
         return view('subscriber.index', compact('bunch','subscribers'));
     }
 
@@ -48,7 +48,8 @@ class SubscriberController extends Controller
      */
     public function store(Bunch $bunch, Subscriber $subscriber, SubscriberRequest $request)
     {
-        $subscriber->create($request->all());
+        $model = $subscriber->create($request->all());
+        $bunch->addSubscriber($model);
         return redirect()->route('bunch.subscriber.index', compact('bunch'));
     }
 
@@ -61,6 +62,7 @@ class SubscriberController extends Controller
      */
     public function show(Bunch $bunch, Subscriber $subscriber)
     {
+
         return view('subscriber.show', compact('bunch','subscriber'));
     }
 
