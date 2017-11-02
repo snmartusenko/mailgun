@@ -3,5 +3,5 @@
     {!!Form::text('name', null, ['class' => 'form-control']) !!}
 
     {!!Form::label('content', 'Content') !!}
-    {!!Form::text('content', null, ['class' => 'form-control']) !!}
+    {!!Form::textarea('content', null, ['class' => 'form-control', 'name' => 'content' , 'id' => 'editor1']) !!}
 </div>

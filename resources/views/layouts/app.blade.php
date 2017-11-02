@@ -12,6 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="{{ asset('/js/ckeditor/ckeditor.js') }}"
+            type="text/javascript" charset="utf-8" ></script>
 </head>
 <body>
     <div id="app">
@@ -82,4 +85,9 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
+
+<script>
+    var editor = CKEDITOR.replace( 'editor1' );
+</script>
+
 </html>
