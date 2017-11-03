@@ -32,6 +32,8 @@ class CampaignController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Campaign::class);
+
         return view ('campaign.create');
     }
 
@@ -56,6 +58,8 @@ class CampaignController extends Controller
      */
     public function show(Campaign $campaign)
     {
+        $this->authorize('view', $campaign);
+
         return view('campaign.show', compact('campaign'));
     }
 
@@ -67,6 +71,8 @@ class CampaignController extends Controller
      */
     public function edit(Campaign $campaign)
     {
+        $this->authorize('update', $campaign);
+
         return view('campaign.edit', compact('campaign'));
     }
 
@@ -79,6 +85,8 @@ class CampaignController extends Controller
      */
     public function update(CampaignRequest $request, Campaign $campaign)
     {
+        $this->authorize('update', $campaign);
+
         $campaign->update($request->all());
         return redirect()->route('campaign.index');
     }
@@ -91,6 +99,8 @@ class CampaignController extends Controller
      */
     public function destroy(Campaign $campaign)
     {
+        $this->authorize('delete', $campaign);
+
         $campaign->delete();
         return redirect()->route('campaign.index');
     }
