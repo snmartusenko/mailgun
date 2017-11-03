@@ -35,6 +35,8 @@ class SubscriberController extends Controller
      */
     public function create(Bunch $bunch)
     {
+        $this->authorize('create', Subscriber::class);
+
         return view ('subscriber.create', compact('bunch'));
     }
 
