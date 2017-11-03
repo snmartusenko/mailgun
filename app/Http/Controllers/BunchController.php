@@ -32,6 +32,8 @@ class BunchController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Bunch::class);
+
         return view ('bunch.create');
     }
 
@@ -56,6 +58,8 @@ class BunchController extends Controller
      */
     public function show(Bunch $bunch)
     {
+        $this->authorize('view', $bunch);
+
         return view('bunch.show', compact('bunch'));
     }
 
@@ -67,6 +71,8 @@ class BunchController extends Controller
      */
     public function edit(Bunch $bunch)
     {
+        $this->authorize('update', $bunch);
+
         return view('bunch.edit', compact('bunch'));
     }
 
@@ -79,6 +85,8 @@ class BunchController extends Controller
      */
     public function update(BunchRequest $request, Bunch $bunch)
     {
+        $this->authorize('update', $bunch);
+
         $bunch->update($request->all());
         return redirect()->route('bunch.index');
     }
@@ -91,6 +99,8 @@ class BunchController extends Controller
      */
     public function destroy(Bunch $bunch)
     {
+        $this->authorize('delete', $bunch);
+
         $bunch->delete();
         return redirect()->route('bunch.index');
     }

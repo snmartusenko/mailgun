@@ -32,6 +32,8 @@ class TemplateController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Template::class);
+
         return view ('template.create');
     }
 
@@ -56,6 +58,8 @@ class TemplateController extends Controller
      */
     public function show(Template $template)
     {
+        $this->authorize('view', $template);
+
         return view('template.show', compact('template'));
     }
 
@@ -67,6 +71,8 @@ class TemplateController extends Controller
      */
     public function edit(Template $template)
     {
+        $this->authorize('update', $template);
+
         return view('template.edit', compact('template'));
     }
 
@@ -79,6 +85,8 @@ class TemplateController extends Controller
      */
     public function update(TemplateRequest $request, Template $template)
     {
+        $this->authorize('update', $template);
+
         $template->update($request->all());
         return redirect()->route('template.index');
     }
@@ -91,6 +99,8 @@ class TemplateController extends Controller
      */
     public function destroy(Template $template)
     {
+        $this->authorize('delete', $template);
+
         $template->delete();
         return redirect()->route('template.index');
     }
