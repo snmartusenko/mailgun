@@ -104,4 +104,11 @@ class CampaignController extends Controller
         $campaign->delete();
         return redirect()->route('campaign.index');
     }
+
+    public function send(Campaign $campaign)
+    {
+        $this->authorize('send', $campaign);
+
+        return $campaign->send();
+    }
 }

@@ -13,6 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -24,6 +25,8 @@ Route::resource('campaign', 'CampaignController');
 Route::resource('template', 'TemplateController');
 Route::resource('bunch', 'BunchController');
 Route::resource('bunch.subscriber', 'SubscriberController');
+
+Route::get('campaign/{campaign}/send', ['as' => 'campaign.send', 'uses' => 'CampaignController@send']);
 
 Auth::routes();
 

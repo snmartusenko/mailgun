@@ -56,4 +56,14 @@ class CampaignPolicy
     {
         return $user->id === $campaign->user_id;
     }
+
+    /**
+     * @param User $user
+     * @param Campaign $campaign
+     * @return mixed
+     */
+    public function send(User $user, Campaign $campaign)
+    {
+        return $user->id === $campaign->user_id;
+    }
 }

@@ -47,9 +47,13 @@ use App\models\bunch\Bunch;
                                     <td>{{Bunch::find($model->bunch_id)->name}}</td>
                                     <td>
                                         {{Form::open(['class' => 'confirm-delete', 'route' => ['campaign.destroy', $model->id], 'method' => 'DELETE'])}}
+
                                         {{ link_to_route('campaign.show', 'info', [$model->id], ['class' => 'btn btn-info btn-xs']) }}
                                         |
-                                        {{ link_to_route('campaign.edit', 'edit', [$model->id], ['class' => 'btn btn-success btn-xs']) }}
+                                        {{ link_to_route('campaign.edit', 'edit', [$model->id], ['class' => 'btn btn-info btn-xs']) }}
+                                        |
+                                        {{ link_to_route('campaign.send', 'Send!', [$model->id], ['class' => 'btn btn-success btn-xs']) }}
+
                                         {{Form::button('Delete', ['class' => 'btn btn-danger btn-xs', 'type' => 'submit'])}}
                                         {{Form::close()}}
                                     </td>
