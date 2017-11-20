@@ -2,11 +2,18 @@
 
 namespace App\models\campaign;
 
+use App\Mail\SendCampaign;
+use App\models\bunch\Bunch;
 use App\Scopes\OwnedScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Mail;
 
+/**
+ * Class Campaign
+ * @package App\models\campaign
+ *
+ * @property Bunch $bunch
+ */
 class Campaign extends Model
 {
     use SoftDeletes;
@@ -25,12 +32,18 @@ class Campaign extends Model
         static::addGlobalScope(new OwnedScope());
     }
 
+    public function bunch()
+    {
+        return $this->belongsTo('App\models\bunch\Bunch');
+    }
+
     public function send()
     {
-        Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
-        {
-            $message->subject($this->name.' ('. $this->description .')');
-            $message->to('snmartusenko@gmail.com');
-        });
+        /** @var SendCampaign $model */
+        $model = new SendCampaign();
+
+        $result = $model->execute($this);
+
+        return $result ? $result: false;
     }
 }

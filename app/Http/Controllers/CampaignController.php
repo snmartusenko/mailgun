@@ -34,7 +34,7 @@ class CampaignController extends Controller
     {
         $this->authorize('create', Campaign::class);
 
-        return view ('campaign.create');
+        return view('campaign.create');
     }
 
     /**
@@ -109,6 +109,10 @@ class CampaignController extends Controller
     {
         $this->authorize('send', $campaign);
 
-        return $campaign->send();
+        if ($campaign->send()) {
+            return view('campaign.sent', compact('campaign'));
+        }
+
+        return redirect()->route('campaign.index');
     }
 }
