@@ -17,14 +17,15 @@ class SendCampaign extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $campaign;
+
     /**
      * Create a new message instance.
-     *
-     * @return void
+     * @param Campaign $campaign
      */
-    public function __construct()
+    public function __construct(Campaign $campaign)
     {
-        //
+        $this->campaign = $campaign;
     }
 
     /**
@@ -34,19 +35,7 @@ class SendCampaign extends Mailable
      */
     public function build()
     {
-//        return $this->view('view.name');
+        return $this->view('email.campaign');
     }
 
-    public function execute(Campaign $campaign)
-    {
-        $receivers = $campaign->bunch->subscribers;
-//        var_dump($receivers); die();
-
-        foreach ($receivers as $receiver) {
-            Mail::raw('Sending emails with Mailgun and Laravel is easy!', function ($message) use ($campaign, $receiver) {
-                $message->subject($campaign->name . ' (' . $campaign->description . ')');
-                $message->to($receiver->email);
-            });
-        }
-    }
 }

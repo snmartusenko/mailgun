@@ -4,9 +4,11 @@ namespace App\models\campaign;
 
 use App\Mail\SendCampaign;
 use App\models\bunch\Bunch;
+use App\models\template\Template;
 use App\Scopes\OwnedScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class Campaign
@@ -37,13 +39,28 @@ class Campaign extends Model
         return $this->belongsTo('App\models\bunch\Bunch');
     }
 
+    public function template()
+    {
+        return $this->belongsTo('App\models\template\Template');
+    }
+
     public function send()
     {
-        /** @var SendCampaign $model */
-        $model = new SendCampaign();
+        $receivers = $this->bunch->subscribers;
 
-        $result = $model->execute($this);
+        foreach ($receivers as $receiver)
+        {
+            Mail::send('email.campaign', ['campaign' => $this], function ($m) use ($receiver)
+            {
+                $m->to($receiver->email, $receiver->name)
+                    ->subject($this->name . ' (' . $this->description . ')');
+            });
 
-        return $result ? $result: false;
+//            Mail::to($receiver->email)
+////                ->subject($this->name . ' (' . $this->description . ')')
+//                ->send(new SendCampaign($this));
+        }
+
+        return true;
     }
 }
