@@ -39,13 +39,12 @@ use App\models\bunch\Bunch;
                             </tr>
 
                             @foreach ($campaigns as $model)
-                                <tr>
-{{--                                    <td>{{$model->id}}</td>--}}
-                                    <td>{{$model->name}}</td>
+                                <tr data-link="row">
+                                    <td >{{$model->name}}</td>
                                     <td>{{$model->description}}</td>
                                     <td>{{Template::find($model->template_id)->name}}</td>
                                     <td>{{Bunch::find($model->bunch_id)->name}}</td>
-                                    <td>
+                                    <td class="rowlink-skip">
                                         {{Form::open(['class' => 'confirm-delete', 'route' => ['campaign.destroy', $model->id], 'method' => 'DELETE'])}}
 
                                         {{ link_to_route('campaign.show', 'info', [$model->id], ['class' => 'btn btn-info btn-xs']) }}

@@ -31,12 +31,11 @@
                             </tr>
 
                             @foreach ($templates as $model)
-                                <tr>
-{{--                                    <td>{{$model->id}}</td>--}}
+                                <tr data-link="row">
                                     <td>{{$model->name}}</td>
                                     <td>{{$model->content}}</td>
-                                    <td>
-                                        {{Form::open(['class' => 'confirm-delete', 'route' => ['template.destroy', $model->id], 'method' => 'DELETE'])}}
+                                    <td class="rowlink-skip">
+                                    {{Form::open(['class' => 'confirm-delete', 'route' => ['template.destroy', $model->id], 'method' => 'DELETE'])}}
                                         {{ link_to_route('template.show', 'info', [$model->id], ['class' => 'btn btn-info btn-xs']) }}
                                         |
                                         {{ link_to_route('template.edit', 'edit', [$model->id], ['class' => 'btn btn-success btn-xs']) }}

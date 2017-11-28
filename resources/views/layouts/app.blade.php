@@ -10,11 +10,17 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
+    <!-- CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jasny-bootstrap.css') }}" rel="stylesheet">
 
-    <script src="{{ asset('/js/ckeditor/ckeditor.js') }}"
-            type="text/javascript" charset="utf-8" ></script>
+    <!-- Подключаем jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- JS -->
+    <script src="{{ asset('/js/ckeditor/ckeditor.js') }}" type="text/javascript" charset="utf-8" ></script>
+    <script src="{{ asset('/js/jasny-bootstrap.js') }}" type="text/javascript" charset="utf-8" ></script>
+
 </head>
 <body>
     <div id="app">

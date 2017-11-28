@@ -32,13 +32,12 @@
                             </tr>
 
                             @foreach ($subscribers as $model)
-                                <tr>
-{{--                                    <td>{{$model->id}}</td>--}}
+                                <tr data-link="row">
                                     <td>{{$model->firstname}}</td>
                                     <td>{{$model->lastname}}</td>
                                     <td>{{$model->email}}</td>
-                                    <td>
-                                        {{Form::open([
+                                    <td class="rowlink-skip">
+                                    {{Form::open([
                                             'class' => 'confirm-delete',
                                             'route' => ['bunch.subscriber.destroy', $bunch, $model->id],
                                             'method' => 'DELETE'

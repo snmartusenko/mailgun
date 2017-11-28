@@ -31,12 +31,11 @@
                             </tr>
 
                             @foreach ($bunches as $model)
-                                <tr>
-{{--                                    <td>{{$model->id}}</td>--}}
-                                    <td>{{$model->name}}</td>
+                                <tr data-link="row">
+                                    <td>{{ link_to_route('bunch.show', '', [$model->id], []) }}{{$model->name}}</td>
                                     <td>{{$model->description}}</td>
-                                    <td>
-                                        {{Form::open([
+                                    <td class="rowlink-skip">
+                                    {{Form::open([
                                             'class' => 'confirm-delete',
                                             'route' => ['bunch.destroy', $model->id],
                                             'method' => 'DELETE'
