@@ -52,7 +52,7 @@ use App\models\bunch\Bunch;
                                         |
                                         {{ link_to_route('campaign.edit', 'edit', [$model->id], ['class' => 'btn btn-info btn-xs']) }}
                                         |
-                                        {{ link_to_route('campaign.send', 'Send!', [$model->id], ['class' => 'btn btn-success btn-xs']) }}
+                                        {{ link_to_route('campaign.preview', 'preview', [$model->id], ['class' => 'btn btn-success btn-xs']) }}
 
                                         {{Form::button('Delete', ['class' => 'btn btn-danger btn-xs', 'type' => 'submit'])}}
                                         {{Form::close()}}

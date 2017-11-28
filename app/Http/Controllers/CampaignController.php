@@ -105,6 +105,21 @@ class CampaignController extends Controller
         return redirect()->route('campaign.index');
     }
 
+    /**
+     * @param Campaign $campaign
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function preview(Campaign $campaign)
+    {
+        $this->authorize('send', $campaign);
+
+        return view('campaign.preview', compact('campaign'));
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function send(Campaign $campaign)
     {
         $this->authorize('send', $campaign);

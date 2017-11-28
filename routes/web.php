@@ -26,6 +26,7 @@ Route::resource('template', 'TemplateController');
 Route::resource('bunch', 'BunchController');
 Route::resource('bunch.subscriber', 'SubscriberController');
 
+Route::get('campaign/{campaign}/preview', ['as' => 'campaign.preview', 'uses' => 'CampaignController@preview']);
 Route::get('campaign/{campaign}/send', ['as' => 'campaign.send', 'uses' => 'CampaignController@send']);
 
 Auth::routes();
