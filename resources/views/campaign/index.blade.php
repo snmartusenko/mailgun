@@ -41,8 +41,8 @@ use App\models\bunch\Bunch;
                             <tr data-link="row">
                                 <td>{{$model->name}}</td>
                                 <td>{{$model->description}}</td>
-                                <td>{{Template::find($model->template_id)->name}}</td>
-                                <td>{{Bunch::find($model->bunch_id)->name}}</td>
+                                <td>{{$model->template ? $model->template->name : 'was deleted'}}</td>
+                                <td>{{$model->bunch ? $model->bunch->name : 'was deleted'}}</td>
                                 <td class="rowlink-skip">
                                     {{Form::open(['class' => 'confirm-delete', 'route' => ['campaign.destroy', $model->id], 'method' => 'DELETE'])}}
 
